@@ -1,0 +1,88 @@
+{%url 'index' as index_url %}
+{%url 'login' as login_url %}
+{%url 'logout' as logout_url %}
+{%url 'blogApp:create' as create_url %}
+{%url 'blogApp:signup' as signup_url %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>BlogSpot</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Bootstrap Css CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <!--fontawsome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" type="text/css" href="{%static 'css/main.css'%}">
+</head>
+<body>
+	<!--NavBar Begins-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">BlogSpot</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {% if request.path == index_url %} 
+      <li class="nav-item active">
+        <a class="nav-link" href="{%url 'index' %}">Home&nbsp;<i class="fas fa-home"></i> <span class="sr-only">(current)</span></a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'index' %}">Home&nbsp;<i class="fas fa-home"></i> <span class="sr-only">(current)</span></a>
+      </li>
+      {% endif %}
+      {% if request.path == create_url %} 
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'blogApp:create' %}">Create Own&nbsp;<i class="fas fa-plus-circle"></i></a>
+      </li> 
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blogApp:create' %}">Create Own&nbsp;<i class="fas fa-plus-circle"></i></a>
+      </li> 
+      {% endif %}
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+      </li>
+      {% else %}
+      {% if request.path == login_url %} 
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'login' %}">Login&nbsp;<i class="fas fa-sign-in-alt"></i></span></a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login&nbsp;<i class="fas fa-sign-in-alt"></i></span></a>
+      </li>
+      {% endif %}
+      {% if request.path == signup_url %} 
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'blogApp:signup' %}">SignUp&nbsp;<i class="fas fa-user-plus"></i></a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blogApp:signup' %}">SignUp&nbsp;<i class="fas fa-user-plus"></i></a>
+      </li>
+      {% endif %}
+      {% endif %}
+  </div>
+</nav>
+<!--NaBar ends-->
+
+{% block body_block %}
+
+{% endblock %}
+<!--Bootstrap JS/ Jquerry CDN-->
+<!--Placed at the end to make it load faster-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>

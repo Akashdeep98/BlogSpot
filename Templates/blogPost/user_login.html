@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+
+{% block body_block %}
+<center>
+<div class="jumbotron">
+	<form method="POST">
+		{%csrf_token%}
+		<label>UserName</label>
+		<input type="Text" name="username"><br>
+		<label>Password</label>
+		<input type="Password" name="password"><br>
+		<button type="submit" class="btn btn-primary">Login in</button>
+	</form>
+</div>
+</center>
+{% endblock %}

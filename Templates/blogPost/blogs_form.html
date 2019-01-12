@@ -1,0 +1,16 @@
+{% extends "blogPost/base.html" %}
+{% load bootstrap4 %}
+{% block body_block %}
+<div class="container jumbotron" style="margin-top: 5vh;">	
+<center><h1 ><span class="badge badge-secondary">Create Your Own Blog</span></h1></center><br>
+	<center>
+		<form method="POST">
+		<br>
+		<br>
+		{% bootstrap_form form %}
+		{% csrf_token %}
+		<input type="submit" class="btn btn-primary" value="Post">
+		</form>
+	</center>
+</div>
+{% endblock %}
